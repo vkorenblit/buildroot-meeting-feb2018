@@ -9,9 +9,7 @@
 \usepackage{dirtytalk}
 \graphicspath{{img/}}
 
-\lstset{
-           basicstyle=\ttfamily\scriptsize,
-          }
+\lstset{ basicstyle=\ttfamily\scriptsize}
 
 \title[LLVM/Clang + Buildroot]{LLVM/Clang integration to Buildroot}
 
@@ -35,7 +33,18 @@ Smile \\~\\
 \tableofcontents
 \end{frame}
 
+%-------------------------------------------------------
+\section{Internship objectives}
 
+\begin{frame}
+\frametitle{Internship objectives}
+\begin{itemize}
+  \item Preliminary study of LLVM/Clang and OpenCL
+  \item LLVM/Clang integration to buildroot
+  \item OpenCL support for already existing packages in Buildroot (OpenCV, Mesa3D)
+  \item Integration of new packages that can benefit from OpenCL: image processing (i.e. Darktable), simulation, cryptography, etc.
+\end{itemize}
+\end{frame}
 %-------------------------------------------------------
 \section{LLVM}
 
@@ -51,7 +60,7 @@ Smile \\~\\
   \item Well structured and documented
   \item Some existing backends:
   \begin{itemize}
-    \item ARM, ARM64, Hexagon, Mips, Mipsel, NVIDIA PTX 32/64, PowerPC 32/64, AMD r600, Sparc, Thumb, x86, x86-64, XCore
+    \item \textbf{ARM}, ARM64, Hexagon, Mips, Mipsel, NVIDIA PTX 32/64, PowerPC 32/64, \textbf{AMD r600}, Sparc, Thumb, x86, \textbf{x86-64}, XCore
   \end{itemize}
 \end{itemize}
 \end{frame}
@@ -65,6 +74,7 @@ Smile \\~\\
     \item Strongly typed
     \item Unlimited number of virtual registers in SSA
   \end{itemize}
+  \item Optimizer
 \end{itemize}
 
 \begin{lstlisting}
@@ -96,9 +106,9 @@ Smile \\~\\
 \frametitle{Clang}
 \begin{itemize}
   \item Frontend C/C++, Objective C/C++, OpenCL for LLVM
-  \item Fast compilation
   \item Clear and concise diagnostics (error and warning messages)
   \item Macro expansion in error messages
+  \item Sanitizers
   \item Goals
   \begin{itemize}
     \item Designed to be highly compatible with GCC
@@ -124,8 +134,6 @@ Smile \\~\\
   \item Sony Interactive Entretainment: CPU compiler for Playstation 4
 \end{itemize}
 \end{frame}
-
-
 %-------------------------------------------------------
 \section{Compiling Linux with Clang}
 
@@ -143,6 +151,7 @@ Smile \\~\\
     \end{itemize}
   \end{itemize}
   \item LLVMLinux Project: Kernel 4.4 and 4.9 built with Clang for x86\_64 and ARM64 (need to apply some patches)\footnote{https://lwn.net/Articles/734071/}
+  \item glibc ? binutils?
 \end{itemize}
 \end{frame}
 %-------------------------------------------------------
@@ -160,8 +169,9 @@ Smile \\~\\
 \begin{itemize}
   \item Gallium llvmpipe driver: software rasterizer that uses LLVM to do runtime code generation
   \begin{itemize}
-    \item It is the fastest software rasterizer for Mesa
+    \item It is the fastest software rasterizer for Mesa3D
   \end{itemize}
+  \item Applications that make use of OpenCL
 \end{itemize}
 \end{frame}
 
@@ -173,12 +183,20 @@ Smile \\~\\
     \item Current version: 5.0.1 - Upcoming release: 6.0.0 on Feb 21
   \end{itemize}
   \item How to decide which packages are compiled with each compiler (GCC/Clang)?
+  \begin{itemize}
+    \item i.e. Debian packages: 28203 packages have been rebuild. Among them, 1445 (5.1 \%) failed \footnote{http://clang.debian.net/status.php?version=5.0}
+  \end{itemize}
   \item Compile kernel with Clang?
+  \item Which OpenCL implementation?
+  \begin{itemize}
+    \item {\fontfamily{qcr}\selectfont libclc}: AMDGCN, and R600 and NVPTX targets
+    \item {\fontfamily{qcr}\selectfont pocl}: many CPUs, ASIPs (TCE/TTA), NVIDIA GPUs (via CUDA), HSA-supported GPUs and multiple private off-tree targets
+  \end{itemize}
 \end{itemize}
 \end{frame}
 %-------------------------------------------------------
 \begin{frame}
-\Huge{\centerline{The End}}
+\Huge{\centerline{Thanks}}
 \end{frame}
 
 \end{document}
