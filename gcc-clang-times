@@ -1,0 +1,22 @@
+Compiling GCC 7.2.0 with both GCC 7.2.0 and Clang 5.0.1 for x86_64
+-CPU0: Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz
+-Fedora 27
+
+Commands:
+
+../configure --prefix=/home/valentin/gcc-7.2.0-clang --enable-languages=c,c++ --disable-multilib
+time make
+
+GCC 7.2.0 output:
+
+real	124m34,207s
+user	117m59,492s
+sys	4m59,127s
+
+Clang 5.0.1 output:
+
+real	209m55,289s
+user	203m48,676s
+sys	  4m59,811s
+
+Takes a lot more time to compile with Clang. A LOT of warnings when compared to GCC
