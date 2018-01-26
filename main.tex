@@ -112,11 +112,10 @@ Smile \\~\\
   \item Goals
   \begin{itemize}
     \item Designed to be highly compatible with GCC
-    \item Fully implement all ISO C++ standards
+    \item Fully implement all ISO C++ standards until C++14 and most of C++17 (30 Nov 2017)
   \end{itemize}
   \item Performance vs GCC ?\footnote{\url{http://www.phoronix.com/vr.php?view=25742}}
 \end{itemize}
-
 \end{frame}
 %-------------------------------------------------------
 \section{Who is using LLVM/Clang}
@@ -191,8 +190,9 @@ Smile \\~\\
   \item Compile kernel with Clang?
   \item Which OpenCL implementation?
   \begin{itemize}
-    \item {\fontfamily{qcr}\selectfont libclc}: AMDGCN, and R600 and NVPTX targets
-    \item {\fontfamily{qcr}\selectfont pocl}: many CPUs, ASIPs (TCE/TTA), NVIDIA GPUs (via CUDA), HSA-supported GPUs and multiple private off-tree targets
+    \item {\fontfamily{qcr}\selectfont Clover}: used by Mesa. OpenCL 1.1 Supported, missing some OpenCL 1.2 functions
+    \item {\fontfamily{qcr}\selectfont pocl}: many CPUs, ASIPs (TCE/TTA), NVIDIA GPUs (via CUDA). Approaching OpenCL 1.2 completeness in 2017
+    \item {\fontfamily{qcr}\selectfont Beignet}: intel GPUs. Passed conformance for 1.2 in 2015, nearly complete OpenCL 2.0 in 2017
   \end{itemize}
 \end{itemize}
 \end{frame}
