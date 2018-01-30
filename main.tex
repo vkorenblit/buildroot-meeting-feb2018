@@ -65,6 +65,13 @@ Smile \\~\\
 \end{itemize}
 \end{frame}
 
+\begin{frame}
+\frametitle{LLVM - Three-phase approach}
+\begin{figure}
+\includegraphics[width=0.8\linewidth]{img/llvm_struct.png}
+\end{figure}
+\end{frame}
+
 \begin{frame}[fragile]
 \frametitle{LLVM - Internal aspects}
 \begin{itemize}
@@ -75,6 +82,7 @@ Smile \\~\\
     \item Unlimited number of virtual registers in SSA
   \end{itemize}
   \item Optimizer
+  \item IR Code example:
 \end{itemize}
 
 \begin{lstlisting}
@@ -90,15 +98,9 @@ Smile \\~\\
         ret i32 0
       }
 \end{lstlisting}
-
 \end{frame}
 
-\begin{frame}
-\frametitle{LLVM - Three-phase approach}
-\begin{figure}
-\includegraphics[width=0.8\linewidth]{img/llvm_struct.png}
-\end{figure}
-\end{frame}
+
 %-------------------------------------------------------
 \section{Clang}
 
@@ -159,9 +161,20 @@ Smile \\~\\
 \section{LLVM/Clang integration to Buildroot}
 
 \begin{frame}
-\frametitle{LLVM/Clang integration to Buildroot}
+\frametitle{LLVM/Clang integration to Buildroot - Existing work}
 \begin{itemize}
-  \item Existing work:
+  \item Series of patches by Romain Naour (9)\footnote{[Buildroot] [RFC\ 0/9] Add llvm/clang + openCL}:
+  \begin{itemize}
+    \item package/llvm: new host package
+    \item package/clang: new host package
+    \item package/llvm: enable target variant
+    \item package/llvm: RFC: install llvm-config in staging
+    \item package/clang: enable target variant
+    \item package/llvm: add AMDGPU support
+    \item package/mesa3d: enable llvm support
+    \item package/libclc: new package
+    \item package/mesa3d: enable openCL support
+  \end{itemize}
 \end{itemize}
 \end{frame}
 
