@@ -40,7 +40,7 @@ Smile \\~\\
 \frametitle{Internship objectives}
 \begin{itemize}
   \item Preliminary study of LLVM/Clang and OpenCL
-  \item LLVM/Clang integration to buildroot
+  \item LLVM/Clang integration to Buildroot
   \item OpenCL support for already existing packages in Buildroot (OpenCV, Mesa3D)
   \item Integration of new packages that can benefit from OpenCL: image processing (i.e. Darktable), simulation, cryptography, etc.
 \end{itemize}
@@ -52,6 +52,9 @@ Smile \\~\\
 \frametitle{LLVM}
 \begin{itemize}
   \item Open source project started in 2000
+  \begin{itemize}
+    \item Several subprojects: LLVM Core, Clang, lldb, compiler-rt, libclc, lld
+  \end{itemize}
   \item Provides a compiler infrastructure written in C++
   \begin{itemize}
     \item Designed as an API from the beginning
@@ -107,9 +110,9 @@ Smile \\~\\
 \begin{frame}
 \frametitle{Clang}
 \begin{itemize}
-  \item Frontend C/C++, Objective C/C++, OpenCL for LLVM
+  \item Frontend C/C++, Objective C/C++ and OpenCL C for LLVM
   \item Clear and concise diagnostics (error and warning messages)
-  \item Macro expansion in error messages
+  \item Natively a cross-compiler
   \item Sanitizers
   \item Goals
   \begin{itemize}
@@ -129,10 +132,14 @@ Smile \\~\\
   \item Apple
   \begin{itemize}
     \item All operating systems built with LLVM
-    \item Xcode IDE uses Clang compiler and Clang static analyzer by default
+    \item Xcode IDE uses Clang compiler and static analyzer by default
   \end{itemize}
   \item FreeBSD can be entirely built with Clang/LLVM
-  \item Google is using Clang for compiling their production builds of Chrome on Linux
+  \item Google is using Clang for building:
+  \begin{itemize}
+    \item Android user space
+    \item Chrome on Linux
+  \end{itemize}
   \item OpenCL: AMD, Apple, Intel, NVidia (runtime compiler)
   \item Sony Interactive Entretainment: CPU compiler for Playstation 4
 \end{itemize}
@@ -148,12 +155,13 @@ Smile \\~\\
     \item Kernel expects to use some GCC behavior that is not supported by Clang:
     \begin{itemize}
       \item Variable Length Arrays inside structures
-      \item Inline functions (GNU C extension)
+      \item Nested functions
       \item Explicit register variables
       \item LLVM assembler cannot be used to build the kernel
     \end{itemize}
   \end{itemize}
   \item LLVMLinux Project: Kernel 4.4 and 4.9 built with Clang for x86\_64 and ARM64 (need to apply some patches)\footnote{https://lwn.net/Articles/734071/}
+  \item Still depends on GNU {\fontfamily{qcr}\selectfont gas} and {\fontfamily{qcr}\selectfont ld}
   \item glibc ? binutils?
 \end{itemize}
 \end{frame}
@@ -179,7 +187,7 @@ Smile \\~\\
 \end{frame}
 
 \begin{frame}
-\frametitle{LLVM/Clang integration to Buildroot - What it enables ?}
+\frametitle{LLVM/Clang integration to Buildroot - What does it enable?}
 \begin{itemize}
   \item Gallium llvmpipe driver: software rasterizer that uses LLVM to do runtime code generation
   \begin{itemize}
@@ -203,7 +211,7 @@ Smile \\~\\
   \item Compile kernel with Clang?
   \item Which OpenCL implementation?
   \begin{itemize}
-    \item {\fontfamily{qcr}\selectfont Clover}: used by Mesa. OpenCL 1.1 Supported, missing some OpenCL 1.2 functions
+    \item {\fontfamily{qcr}\selectfont Clover}: part of Mesa. OpenCL 1.1 Supported, missing some OpenCL 1.2 functions
     \item {\fontfamily{qcr}\selectfont pocl}: many CPUs, ASIPs (TCE/TTA), NVIDIA GPUs (via CUDA). Approaching OpenCL 1.2 completeness in 2017
     \item {\fontfamily{qcr}\selectfont Beignet}: intel GPUs. Passed conformance for 1.2 in 2015, nearly complete OpenCL 2.0 in 2017
   \end{itemize}
